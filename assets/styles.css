@@ -37,3 +37,11 @@ body{
 #current-div p{
     padding-left: 20px;
 }
+
+#fiveDay-div{
+    margin-top: 10px;
+}
+
+#fiveDay-div h2{
+    font-weight: bold;
+}
