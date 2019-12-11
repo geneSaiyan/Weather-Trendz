@@ -6,27 +6,45 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 
 <body>
+    <!-- Header -->
     <div class="container-fluid" id="header-div">
         <h1>Weather TRENDz</h1>
     </div>
 
+    <!-- Main container -->
     <div class="container-fluid" id="main-container">
         <div class="row">
-            <div class="col-3" style="background-color:pink; height:400px" id="search-div">
+            <!-- Search for City section -->
+            <div class="col-3" style="background-color:#F7F7F7; height:auto" id="search-div">
                 <h4>Search for a City:</h4>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Recipient's username">
+                    <input type="text" class="form-control" placeholder="Enter a City" id="txtCity">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-primary" type="button" id="btnSearchCity">Search</button>
+                      <button class="btn btn-primary" type="button" id="btnSearchCity"><i class="fa fa-search"></i></button>
                     </div>
                   </div>
+                  <div class="btn-group-vertical" id="cityBtnGroup-div">
+                        <button type="button" class="btn btn-outline-secondary">Washington DC</button>
+                        <button type="button" class="btn btn-outline-secondary">Ashburn</button>
+                        <button type="button" class="btn btn-outline-secondary">Clinton</button>
+                        <button type="button" class="btn btn-outline-secondary">Accokeek</button>
+                </div>
             </div>
-            <div class="col-9" style="background-color:orange; height:400px">
-
+            <!-- City Result section -->
+            <div class="col-9" style="background-color:#FFEBCD; height:600px" id="result-div">
+               <div id="current-div">
+                    <h2 id="cityName">Accokeek <span id="todayDate">(12/11/2019)</span></h2>
+                    <hr>
+                    <p>Temperature: <span id="current-temp">88</span></p>
+                    <p>Humidity: <span id="current-humidity">22%</span></p>
+                    <p>Wind Speed: <span id="current-windSpeed">45 MPH</span></p>
+                    <p>UV Index: <span id="current-uv">8.8</span></p>
+               </div>
             </div>
         </div>
     </div>
@@ -42,6 +60,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   
     <script src="script.js"></script>
 </body>
 

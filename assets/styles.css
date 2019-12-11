@@ -17,3 +17,23 @@ body{
 #search-div h4{
     padding-top: 10px;
 }
+
+#cityBtnGroup-div{
+    width: 100%;
+}
+
+#current-div{
+    border: solid 1px black;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+#current-div h2{
+    padding-top: 20px;
+    padding-left: 20px;
+    font-weight: bold;
+}
+
+#current-div p{
+    padding-left: 20px;
+}
