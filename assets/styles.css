@@ -1,0 +1,19 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-color:#F0FFFF;
+}
+
+#header-div{
+    background-color: #4E78A0;
+    height: 100px;
+}
+
+#header-div h1{
+    text-align: center;
+    color: #FFC469;
+    padding-top: 1%;
+}
+
+#search-div h4{
+    padding-top: 10px;
+}
