@@ -36,12 +36,13 @@
             <!-- City Result section -->
             <div class="col-9" style="background-color:#FFEBCD; height:600px" id="result-div">
                 <div id="current-div">
-                    <h2 id="cityName">Accokeek <span id="todayDate">(12/11/2019)</span></h2>
+                    <h2 id="cityName"> </h2>
                     <hr>
-                    <p>Temperature: <span id="current-temp">88</span></p>
-                    <p>Humidity: <span id="current-humidity">22%</span></p>
-                    <p>Wind Speed: <span id="current-windSpeed">45 MPH</span></p>
-                    <p>UV Index: <span id="current-uv">8.8</span></p>
+                    <p id="todayDate"></p>
+                    <p id="current-temp"></p>
+                    <p id="current-humidity"></p>
+                    <p id="current-windSpeed"></p>
+                    <p id="current-uv"></p>
                 </div>
                 <div id="fiveDay-div">
                     <h2>5 Day Forecast:</h2>
@@ -107,7 +108,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
     <script src="script.js"></script>
 </body>
 
