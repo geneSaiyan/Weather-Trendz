@@ -45,3 +45,10 @@ body{
 #fiveDay-div h2{
     font-weight: bold;
 }
+
+#fiveDay-div .card{
+    background-color: #1C86EE;
+    color: white;
+    width: 12rem;
+    display:inline-block;
+}
