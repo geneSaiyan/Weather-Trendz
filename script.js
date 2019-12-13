@@ -15,11 +15,12 @@ function displayCity() {
         method: "GET"
     }).then(function (response) {
 
+        //Using Moment JS to get the current date
         var getDate = moment();
         var todaysDate = getDate.format("MM/DD/YYYY");
 
         // Converting temp from Kelvin to Fahrenheit
-        var temp = Math.round((( response.main.temp - 273.15) * 9/5) + 32);
+        var temp = Math.round(((response.main.temp - 273.15) * 9 / 5) + 32);
         $("#cityName").text(response.name);
         $("#todayDate").text(todaysDate);
         $("#current-temp").html(`Temperature: ${temp} <span>&#8457;</span>`);
@@ -27,8 +28,8 @@ function displayCity() {
         $("#current-windSpeed").text(`Wind Speed: ${response.wind.speed} MPH`);
         $("#current-uv").html(`UV Index: ${response.clouds.all}`);
 
-       $("#current-div").fadeIn(2000);
-       $("#fiveDay-div").fadeIn(5000);
+        $("#current-div").fadeIn(1000);
+        $("#fiveDay-div").fadeIn(1500);
     });
 
     //Creating second AJAX call to get the five day weather attributes
@@ -37,32 +38,46 @@ function displayCity() {
         method: "GET"
     }).then(function (response) {
 
-        var temp1 = Math.round((( response.list[0].main.temp - 273.15) * 9/5) + 32);
-        var temp2 = Math.round((( response.list[6].main.temp - 273.15) * 9/5) + 32);
-        var temp3 = Math.round((( response.list[15].main.temp - 273.15) * 9/5) + 32);
-        var temp4 = Math.round((( response.list[23].main.temp - 273.15) * 9/5) + 32);
-        var temp5 = Math.round((( response.list[32].main.temp - 273.15) * 9/5) + 32);
-        var day1 = moment().add(1, 'd');
-        var today1 = day1.format("MM/DD/YYYY");
+        //Converting the temperature to fahrenheit
+        var temp1 = Math.round(((response.list[0].main.temp - 273.15) * 9 / 5) + 32);
+        var temp2 = Math.round(((response.list[6].main.temp - 273.15) * 9 / 5) + 32);
+        var temp3 = Math.round(((response.list[15].main.temp - 273.15) * 9 / 5) + 32);
+        var temp4 = Math.round(((response.list[23].main.temp - 273.15) * 9 / 5) + 32);
+        var temp5 = Math.round(((response.list[32].main.temp - 273.15) * 9 / 5) + 32);
+  
+        //Putting the response dates in variables
+        var date1 = new Date(response.list[0].dt_txt);
+        var date2 = new Date(response.list[6].dt_txt);
+        var date3 = new Date(response.list[15].dt_txt);
+        var date4 = new Date(response.list[23].dt_txt);
+        var date5 = new Date(response.list[32].dt_txt);
 
-    $("#dateDay1").text(response.list[0].dt);
-    $("#tempDay1").html(`Temp: ${temp1} <span>&#8457;</span>`);
-    $("#tempDay2").html(`Temp: ${temp2} <span>&#8457;</span>`);
-    $("#tempDay3").html(`Temp: ${temp3} <span>&#8457;</span>`);
-    $("#tempDay4").html(`Temp: ${temp4} <span>&#8457;</span>`);
-    $("#tempDay5").html(`Temp: ${temp5} <span>&#8457;</span>`);
 
-    $("#iconDay1").attr("src", `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`);
+        $("#dateDay1").text(`${date1.getMonth() + 1}/${date1.getDate()}/${date1.getFullYear()}`);
+        $("#dateDay2").text(`${date2.getMonth() + 1}/${date2.getDate()}/${date2.getFullYear()}`);
+        $("#dateDay3").text(`${date3.getMonth() + 1}/${date3.getDate()}/${date3.getFullYear()}`);
+        $("#dateDay4").text(`${date4.getMonth() + 1}/${date4.getDate()}/${date4.getFullYear()}`);
+        $("#dateDay5").text(`${date5.getMonth() + 1}/${date5.getDate()}/${date5.getFullYear()}`);
 
-    //console.log(response.list[0].weather[0].icon);
+        $("#tempDay1").html(`Temp: ${temp1} <span>&#8457;</span>`);
+        $("#tempDay2").html(`Temp: ${temp2} <span>&#8457;</span>`);
+        $("#tempDay3").html(`Temp: ${temp3} <span>&#8457;</span>`);
+        $("#tempDay4").html(`Temp: ${temp4} <span>&#8457;</span>`);
+        $("#tempDay5").html(`Temp: ${temp5} <span>&#8457;</span>`);
 
-    $("#humDay1").html(`Humidity: ${response.list[0].main.humidity}%`);
-    $("#humDay2").html(`Humidity: ${response.list[6].main.humidity}%`);
-    $("#humDay3").html(`Humidity: ${response.list[15].main.humidity}%`);
-    $("#humDay4").html(`Humidity: ${response.list[23].main.humidity}%`);
-    $("#humDay5").html(`Humidity: ${response.list[32].main.humidity}%`);
+        $("#iconDay1").attr("src", `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`);
+        $("#iconDay2").attr("src", `http://openweathermap.org/img/wn/${response.list[6].weather[0].icon}@2x.png`);
+        $("#iconDay3").attr("src", `http://openweathermap.org/img/wn/${response.list[15].weather[0].icon}@2x.png`);
+        $("#iconDay4").attr("src", `http://openweathermap.org/img/wn/${response.list[23].weather[0].icon}@2x.png`);
+        $("#iconDay5").attr("src", `http://openweathermap.org/img/wn/${response.list[32].weather[0].icon}@2x.png`);
 
-       
+        $("#humDay1").html(`Humidity: ${response.list[0].main.humidity}%`);
+        $("#humDay2").html(`Humidity: ${response.list[6].main.humidity}%`);
+        $("#humDay3").html(`Humidity: ${response.list[15].main.humidity}%`);
+        $("#humDay4").html(`Humidity: ${response.list[23].main.humidity}%`);
+        $("#humDay5").html(`Humidity: ${response.list[32].main.humidity}%`);
+
+
     });
 
 }
