@@ -6,7 +6,7 @@ function displayCity() {
 
     var city = $(this).attr("data-city");
 
-    var currentWeatherQuery = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=af6d8ce77f31fadf19d5245c0880c1e8`;
+    var currentWeatherQuery = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=af6d8ce77f31fadf19d5245c0880c1e8`;
 
     //Creating first AJAX call to get the current city weather attributes
     $.ajax({
