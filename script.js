@@ -25,7 +25,7 @@ function displayCity() {
         $("#current-temp").html(`Temperature: ${temp} <span>&#8457;</span>`);
         $("#current-humidity").text(`Humidity: ${response.main.humidity}%`);
         $("#current-windSpeed").text(`Wind Speed: ${response.wind.speed} MPH`);
-        $("#current-uv").html(`UV Index: ${response.clouds.all}`);
+        $("#current-uv").html(`UV Index: <span> ${response.clouds.all} <span>`);
 
         $("#current-div").fadeIn(1000);
         $("#fiveDay-div").fadeIn(1500);

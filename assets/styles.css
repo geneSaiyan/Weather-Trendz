@@ -20,11 +20,12 @@ body{
 
 #cityBtnGroup-div{
     width: 100%;
+    margin-bottom: 2%;
 }
 
 #result-div{
-    background-color:#FFEBCD;
-     height:1000px;
+
+     height:auto;
 }
 
 #current-div{
@@ -42,6 +43,14 @@ body{
 
 #current-div p{
     padding-left: 20px;
+}
+
+#current-uv span{
+    background-color: red;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
 }
 
 #fiveDay-div{
