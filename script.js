@@ -21,8 +21,7 @@ function displayCity() {
 
         // Converting temp from Kelvin to Fahrenheit
         var temp = Math.round(((response.main.temp - 273.15) * 9 / 5) + 32);
-        $("#cityName").text(response.name);
-        $("#todayDate").text(todaysDate);
+        $("#cityName").html(`${response.name} (${todaysDate}) <span><img src="http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png"></span>`);
         $("#current-temp").html(`Temperature: ${temp} <span>&#8457;</span>`);
         $("#current-humidity").text(`Humidity: ${response.main.humidity}%`);
         $("#current-windSpeed").text(`Wind Speed: ${response.wind.speed} MPH`);
@@ -52,31 +51,33 @@ function displayCity() {
         var date4 = new Date(response.list[23].dt_txt);
         var date5 = new Date(response.list[32].dt_txt);
 
-
+        //Displaying five day dates using getMonth/getDate/getFullYear methods
         $("#dateDay1").text(`${date1.getMonth() + 1}/${date1.getDate()}/${date1.getFullYear()}`);
         $("#dateDay2").text(`${date2.getMonth() + 1}/${date2.getDate()}/${date2.getFullYear()}`);
         $("#dateDay3").text(`${date3.getMonth() + 1}/${date3.getDate()}/${date3.getFullYear()}`);
         $("#dateDay4").text(`${date4.getMonth() + 1}/${date4.getDate()}/${date4.getFullYear()}`);
         $("#dateDay5").text(`${date5.getMonth() + 1}/${date5.getDate()}/${date5.getFullYear()}`);
 
+        //Displaying five day temps
         $("#tempDay1").html(`Temp: ${temp1} <span>&#8457;</span>`);
         $("#tempDay2").html(`Temp: ${temp2} <span>&#8457;</span>`);
         $("#tempDay3").html(`Temp: ${temp3} <span>&#8457;</span>`);
         $("#tempDay4").html(`Temp: ${temp4} <span>&#8457;</span>`);
         $("#tempDay5").html(`Temp: ${temp5} <span>&#8457;</span>`);
 
+        //Displaying five day icons
         $("#iconDay1").attr("src", `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`);
         $("#iconDay2").attr("src", `http://openweathermap.org/img/wn/${response.list[6].weather[0].icon}@2x.png`);
         $("#iconDay3").attr("src", `http://openweathermap.org/img/wn/${response.list[15].weather[0].icon}@2x.png`);
         $("#iconDay4").attr("src", `http://openweathermap.org/img/wn/${response.list[23].weather[0].icon}@2x.png`);
         $("#iconDay5").attr("src", `http://openweathermap.org/img/wn/${response.list[32].weather[0].icon}@2x.png`);
 
+        //Displaying five day humidity
         $("#humDay1").html(`Humidity: ${response.list[0].main.humidity}%`);
         $("#humDay2").html(`Humidity: ${response.list[6].main.humidity}%`);
         $("#humDay3").html(`Humidity: ${response.list[15].main.humidity}%`);
         $("#humDay4").html(`Humidity: ${response.list[23].main.humidity}%`);
         $("#humDay5").html(`Humidity: ${response.list[32].main.humidity}%`);
-
 
     });
 
