@@ -7,6 +7,7 @@ function displayCity() {
     var city = $(this).attr("data-city");
 
     var currentWeatherQuery = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=af6d8ce77f31fadf19d5245c0880c1e8`;
+    var fiveDayWeatherQuery = `https://api.openweathermap.org/data/2.5/forecast?q=${city},3166&APPID=af6d8ce77f31fadf19d5245c0880c1e8`;
 
     //Creating first AJAX call to get the current city weather attributes
     $.ajax({
@@ -25,6 +26,41 @@ function displayCity() {
         $("#current-humidity").text(`Humidity: ${response.main.humidity}%`);
         $("#current-windSpeed").text(`Wind Speed: ${response.wind.speed} MPH`);
         $("#current-uv").html(`UV Index: ${response.clouds.all}`);
+
+       $("#current-div").fadeIn(2000);
+       $("#fiveDay-div").fadeIn(5000);
+    });
+
+    //Creating second AJAX call to get the five day weather attributes
+    $.ajax({
+        url: fiveDayWeatherQuery,
+        method: "GET"
+    }).then(function (response) {
+
+        var temp1 = Math.round((( response.list[0].main.temp - 273.15) * 9/5) + 32);
+        var temp2 = Math.round((( response.list[6].main.temp - 273.15) * 9/5) + 32);
+        var temp3 = Math.round((( response.list[15].main.temp - 273.15) * 9/5) + 32);
+        var temp4 = Math.round((( response.list[23].main.temp - 273.15) * 9/5) + 32);
+        var temp5 = Math.round((( response.list[32].main.temp - 273.15) * 9/5) + 32);
+        var day1 = moment().add(1, 'd');
+        var today1 = day1.format("MM/DD/YYYY");
+
+    $("#dateDay1").text(response.list[0].dt);
+    $("#tempDay1").html(`Temp: ${temp1} <span>&#8457;</span>`);
+    $("#tempDay2").html(`Temp: ${temp2} <span>&#8457;</span>`);
+    $("#tempDay3").html(`Temp: ${temp3} <span>&#8457;</span>`);
+    $("#tempDay4").html(`Temp: ${temp4} <span>&#8457;</span>`);
+    $("#tempDay5").html(`Temp: ${temp5} <span>&#8457;</span>`);
+
+    $("#iconDay1").attr("src", `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`);
+
+    //console.log(response.list[0].weather[0].icon);
+
+    $("#humDay1").html(`Humidity: ${response.list[0].main.humidity}%`);
+    $("#humDay2").html(`Humidity: ${response.list[6].main.humidity}%`);
+    $("#humDay3").html(`Humidity: ${response.list[15].main.humidity}%`);
+    $("#humDay4").html(`Humidity: ${response.list[23].main.humidity}%`);
+    $("#humDay5").html(`Humidity: ${response.list[32].main.humidity}%`);
 
        
     });
