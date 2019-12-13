@@ -52,7 +52,7 @@ function displayCity() {
         var date5 = new Date(response.list[33].dt_txt);
 
         //Displaying five day dates using getMonth/getDate/getFullYear methods
-        $("#dateDay1").text(`${date1.getMonth() + 1}/${date1.getDate()}/${date1.getFullYear()}`);
+        $("#dateDay1").text(`${parseInt(date1.getMonth() + 1)}/${date1.getDate()}/${date1.getFullYear()}`);
         $("#dateDay2").text(`${date2.getMonth() + 1}/${date2.getDate()}/${date2.getFullYear()}`);
         $("#dateDay3").text(`${date3.getMonth() + 1}/${date3.getDate()}/${date3.getFullYear()}`);
         $("#dateDay4").text(`${date4.getMonth() + 1}/${date4.getDate()}/${date4.getFullYear()}`);
