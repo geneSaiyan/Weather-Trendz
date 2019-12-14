@@ -1,6 +1,25 @@
 //Empty array to store cities entered by the user
 var cities = [];
 
+localStorageCities();
+
+function localStorageCities() {
+    // Get stored cities from localStorage
+    // Parsing the JSON string to an object
+    var storedCities = JSON.parse(localStorage.getItem("cities"));
+  
+    // If cities were retrieved from localStorage, update the cities array 
+    if (storedCities !== null) {
+        cities = storedCities;
+    }
+  
+  }
+  
+  function storeCities() {
+    // Stringify and set "todos" key in localStorage to todos array
+    localStorage.setItem("cities", JSON.stringify(cities));
+  }
+
 //Function used to display the city HTML content
 function displayCity() {
 
@@ -81,7 +100,9 @@ function displayCity() {
 
     });
 
+    
 }
+
 
 //Function to create the city buttons
 function renderCityButtons() {
@@ -101,6 +122,8 @@ function renderCityButtons() {
 
         $("#cityBtnGroup-div").append(cityBtn);
     }
+
+   
 }
 
 //Button click to search for a city that the user inputs
@@ -116,8 +139,10 @@ $("#btnSearchCity").click(function () {
         renderCityButtons();
     
         $("#txtCity").val("");
+
+        storeCities();
     }
-    
+
 })
 
 // Adding a click event listener to buttons with a class of "cityBtn"
