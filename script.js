@@ -8,23 +8,30 @@ function localStorageCities() {
     // Get stored cities from localStorage
     // Parsing the JSON string to an object
     var storedCities = JSON.parse(localStorage.getItem("cities"));
-  
+
     // If cities were are not null then store the city in the local storage 
     if (storedCities !== null) {
         cities = storedCities;
     }
-  }
-  
-  function storeCities() {
+}
+
+function storeCities() {
     // Stringify and set "cities" key in localStorage to cities array
     localStorage.setItem("cities", JSON.stringify(cities));
-  }
+}
+
 
 //Function used to display the city HTML content
 function displayCity() {
 
     var city = $(this).attr("data-city");
 
+    //Locally storing the last clicked city button City Name
+    localStorage.getItem("currentCity");
+    localStorage.setItem("currentCity", JSON.stringify(city));
+    var storedCity = JSON.parse(localStorage.getItem("currentCity"));
+
+    //Query URL variables
     var currentWeatherQuery = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=af6d8ce77f31fadf19d5245c0880c1e8`;
     var fiveDayWeatherQuery = `https://api.openweathermap.org/data/2.5/forecast?q=${city},3166&APPID=af6d8ce77f31fadf19d5245c0880c1e8`;
 
@@ -64,7 +71,7 @@ function displayCity() {
         var temp3 = Math.round(((response.list[18].main.temp - 273.15) * 9 / 5) + 32);
         var temp4 = Math.round(((response.list[26].main.temp - 273.15) * 9 / 5) + 32);
         var temp5 = Math.round(((response.list[34].main.temp - 273.15) * 9 / 5) + 32);
-  
+
         //Putting the response dates in variables
         var date1 = new Date(response.list[2].dt_txt);
         var date2 = new Date(response.list[10].dt_txt);
@@ -100,16 +107,17 @@ function displayCity() {
         $("#humDay4").html(`Humidity: ${response.list[26].main.humidity}%`);
         $("#humDay5").html(`Humidity: ${response.list[34].main.humidity}%`);
 
+
     });
 }
 
 //Function to retrieve the UV Index
-function retrieveUVIndex(response){
+function retrieveUVIndex(response) {
 
     var uvIndexQuery = `http://api.openweathermap.org/data/2.5/uvi?appid=af6d8ce77f31fadf19d5245c0880c1e8&lat=${response.coord.lat}&lon=${response.coord.lon}`;
 
-       //Creating AJAX call to get the UV Index
-       $.ajax({
+    //Creating AJAX call to get the UV Index
+    $.ajax({
         url: uvIndexQuery,
         method: "GET"
     }).then(function (response) {
@@ -137,21 +145,22 @@ function renderCityButtons() {
 
         $("#cityBtnGroup-div").append(cityBtn);
     }
+
 }
 
 //Button click to search for a city that the user inputs
 $("#btnSearchCity").click(function () {
 
-    if($("#txtCity").val().trim() != ""){
+    if ($("#txtCity").val().trim() != "") {
 
         event.preventDefault();
 
         var city = $("#txtCity").val().trim();
-    
+
         cities.push(city);
-    
+
         renderCityButtons();
-    
+
         $("#txtCity").val("");
 
         storeCities();
@@ -161,5 +170,6 @@ $("#btnSearchCity").click(function () {
 // Adding a click event listener to buttons with a class of "cityBtn"
 $(document).on("click", ".cityBtn", displayCity);
 
-renderCityButtons();
 
+
+renderCityButtons();
