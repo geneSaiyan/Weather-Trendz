@@ -13,7 +13,6 @@ function localStorageCities() {
     if (storedCities !== null) {
         cities = storedCities;
     }
-  
   }
   
   function storeCities() {
@@ -163,3 +162,4 @@ $("#btnSearchCity").click(function () {
 $(document).on("click", ".cityBtn", displayCity);
 
 renderCityButtons();
+
