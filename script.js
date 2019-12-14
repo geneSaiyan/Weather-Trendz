@@ -94,11 +94,11 @@ function displayCity() {
         $("#tempDay5").html(`Temp: ${temp5} <span>&#8457;</span>`);
 
         //Displaying five day icons
-        $("#iconDay1").attr("src", `http://openweathermap.org/img/wn/${response.list[2].weather[0].icon}@2x.png`);
-        $("#iconDay2").attr("src", `http://openweathermap.org/img/wn/${response.list[10].weather[0].icon}@2x.png`);
-        $("#iconDay3").attr("src", `http://openweathermap.org/img/wn/${response.list[18].weather[0].icon}@2x.png`);
-        $("#iconDay4").attr("src", `http://openweathermap.org/img/wn/${response.list[26].weather[0].icon}@2x.png`);
-        $("#iconDay5").attr("src", `http://openweathermap.org/img/wn/${response.list[34].weather[0].icon}@2x.png`);
+        $("#iconDay1").attr("src", `https://openweathermap.org/img/wn/${response.list[2].weather[0].icon}@2x.png`);
+        $("#iconDay2").attr("src", `https://openweathermap.org/img/wn/${response.list[10].weather[0].icon}@2x.png`);
+        $("#iconDay3").attr("src", `https://openweathermap.org/img/wn/${response.list[18].weather[0].icon}@2x.png`);
+        $("#iconDay4").attr("src", `https://openweathermap.org/img/wn/${response.list[26].weather[0].icon}@2x.png`);
+        $("#iconDay5").attr("src", `https://openweathermap.org/img/wn/${response.list[34].weather[0].icon}@2x.png`);
 
         //Displaying five day humidity
         $("#humDay1").html(`Humidity: ${response.list[2].main.humidity}%`);
