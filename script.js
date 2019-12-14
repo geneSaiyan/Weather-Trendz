@@ -23,7 +23,7 @@ function storeCities() {
 //Put the ajax calls for current weather and five day forecast in a function to make it reusable
 function ajaxGetWeather(city){
 
-     //Locally storing the last clicked city button City Name
+     //Locally storing the last searched city
     localStorage.getItem("lastSearch");
     localStorage.setItem("lastSearch", JSON.stringify(city));
     var storedCity = JSON.parse(localStorage.getItem("lastSearch"));
@@ -44,7 +44,7 @@ function ajaxGetWeather(city){
 
         // Converting temp from Kelvin to Fahrenheit
         var temp = Math.round(((response.main.temp - 273.15) * 9 / 5) + 32);
-        $("#cityName").html(`${response.name} (${todaysDate}) <span><img src="http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png"></span>`);
+        $("#cityName").html(`${response.name} (${todaysDate}) <span><img src="https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png"></span>`);
         $("#current-temp").html(`Temperature: ${temp} <span>&#8457;</span>`);
         $("#current-humidity").text(`Humidity: ${response.main.humidity}%`);
         $("#current-windSpeed").text(`Wind Speed: ${response.wind.speed} MPH`);
