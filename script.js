@@ -1,6 +1,7 @@
 //Empty array to store cities entered by the user
 var cities = [];
 
+//Calling this function to initialize retrieiving the cities in local storage
 localStorageCities();
 
 function localStorageCities() {
@@ -8,7 +9,7 @@ function localStorageCities() {
     // Parsing the JSON string to an object
     var storedCities = JSON.parse(localStorage.getItem("cities"));
   
-    // If cities were retrieved from localStorage, update the cities array 
+    // If cities were are not null then store the city in the local storage 
     if (storedCities !== null) {
         cities = storedCities;
     }
@@ -16,7 +17,7 @@ function localStorageCities() {
   }
   
   function storeCities() {
-    // Stringify and set "todos" key in localStorage to todos array
+    // Stringify and set "cities" key in localStorage to cities array
     localStorage.setItem("cities", JSON.stringify(cities));
   }
 
@@ -99,10 +100,7 @@ function displayCity() {
         $("#humDay5").html(`Humidity: ${response.list[33].main.humidity}%`);
 
     });
-
-    
 }
-
 
 //Function to create the city buttons
 function renderCityButtons() {
@@ -122,14 +120,13 @@ function renderCityButtons() {
 
         $("#cityBtnGroup-div").append(cityBtn);
     }
-
-   
 }
 
 //Button click to search for a city that the user inputs
 $("#btnSearchCity").click(function () {
 
     if($("#txtCity").val().trim() != ""){
+
         event.preventDefault();
 
         var city = $("#txtCity").val().trim();
@@ -142,7 +139,6 @@ $("#btnSearchCity").click(function () {
 
         storeCities();
     }
-
 })
 
 // Adding a click event listener to buttons with a class of "cityBtn"
