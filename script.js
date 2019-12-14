@@ -23,6 +23,11 @@ function storeCities() {
 //Put the ajax calls for current weather and five day forecast in a function to make it reusable
 function ajaxGetWeather(city){
 
+     //Locally storing the last clicked city button City Name
+    localStorage.getItem("lastSearch");
+    localStorage.setItem("lastSearch", JSON.stringify(city));
+    var storedCity = JSON.parse(localStorage.getItem("lastSearch"));
+
     //Query URL variables
     var currentWeatherQuery = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=af6d8ce77f31fadf19d5245c0880c1e8`;
     var fiveDayWeatherQuery = `https://api.openweathermap.org/data/2.5/forecast?q=${city},3166&APPID=af6d8ce77f31fadf19d5245c0880c1e8`;
@@ -49,6 +54,8 @@ function ajaxGetWeather(city){
 
         $("#current-div").fadeIn(1000);
         $("#fiveDay-div").fadeIn(1500);
+    }).fail(function (response) {
+        alert("Invalid Search");
     });
 
     //Creating second AJAX call to get the five day weather attributes
@@ -98,19 +105,15 @@ function ajaxGetWeather(city){
         $("#humDay3").html(`Humidity: ${response.list[18].main.humidity}%`);
         $("#humDay4").html(`Humidity: ${response.list[26].main.humidity}%`);
         $("#humDay5").html(`Humidity: ${response.list[34].main.humidity}%`);
+    }).fail(function (response) {
+        console.log("Invalid Search");
     });
 }
-
 
 //Function used to display the city HTML content
 function displayCity(city) {
 
     var city = $(this).attr("data-city");
-
-    //Locally storing the last clicked city button City Name
-    // localStorage.getItem("currentCity");
-    // localStorage.setItem("currentCity", JSON.stringify(city));
-    // var storedCity = JSON.parse(localStorage.getItem("currentCity"));
 
     ajaxGetWeather(city);
 }
@@ -169,6 +172,7 @@ $("#btnSearchCity").click(function () {
 
         ajaxGetWeather(city);
         storeCities();
+
     }
 })
 
@@ -176,3 +180,4 @@ $("#btnSearchCity").click(function () {
 $(document).on("click", ".cityBtn", displayCity);
 
 renderCityButtons();
+
