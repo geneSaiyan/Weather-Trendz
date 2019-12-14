@@ -114,7 +114,7 @@ function displayCity() {
 //Function to retrieve the UV Index
 function retrieveUVIndex(response) {
 
-    var uvIndexQuery = `http://api.openweathermap.org/data/2.5/uvi?appid=af6d8ce77f31fadf19d5245c0880c1e8&lat=${response.coord.lat}&lon=${response.coord.lon}`;
+    var uvIndexQuery = `https://api.openweathermap.org/data/2.5/uvi?appid=af6d8ce77f31fadf19d5245c0880c1e8&lat=${response.coord.lat}&lon=${response.coord.lon}`;
 
     //Creating AJAX call to get the UV Index
     $.ajax({
