@@ -1,6 +1,8 @@
 //Empty array to store cities entered by the user
 var cities = [];
 
+renderLastSearch();
+
 //Calling this function to initialize retrieiving the cities in local storage
 localStorageCities();
 
@@ -24,11 +26,11 @@ function storeCities() {
 function ajaxGetWeather(city){
 
      //Locally storing the last searched city
-    localStorage.getItem("lastSearch");
-    localStorage.setItem("lastSearch", JSON.stringify(city));
-    var storedCity = JSON.parse(localStorage.getItem("lastSearch"));
+    
+    localStorage.setItem("lastSearch", city);
 
-    //Query URL variables
+    if (city != null){
+        //Query URL variables
     var currentWeatherQuery = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=af6d8ce77f31fadf19d5245c0880c1e8`;
     var fiveDayWeatherQuery = `https://api.openweathermap.org/data/2.5/forecast?q=${city},3166&APPID=af6d8ce77f31fadf19d5245c0880c1e8`;
 
@@ -55,7 +57,7 @@ function ajaxGetWeather(city){
         $("#current-div").fadeIn(1000);
         $("#fiveDay-div").fadeIn(1500);
     }).fail(function (response) {
-        alert("Invalid Search");
+        console.log("No Data Retrieved");
     });
 
     //Creating second AJAX call to get the five day weather attributes
@@ -106,8 +108,13 @@ function ajaxGetWeather(city){
         $("#humDay4").html(`Humidity: ${response.list[26].main.humidity}%`);
         $("#humDay5").html(`Humidity: ${response.list[34].main.humidity}%`);
     }).fail(function (response) {
-        console.log("Invalid Search");
+        console.log("No Data Retrieved");
     });
+    }
+    else{
+     return
+    }
+    
 }
 
 //Function used to display the city HTML content
@@ -152,7 +159,18 @@ function renderCityButtons() {
 
         $("#cityBtnGroup-div").append(cityBtn);
     }
+}
 
+//Function to display the users last search on page load
+function renderLastSearch(){
+ 
+    var city =  localStorage.getItem("lastSearch");
+
+    if (city === null) {
+        return;
+      }
+
+    ajaxGetWeather(city);
 }
 
 //Button click to search for a city that the user inputs
@@ -180,4 +198,3 @@ $("#btnSearchCity").click(function () {
 $(document).on("click", ".cityBtn", displayCity);
 
 renderCityButtons();
-
