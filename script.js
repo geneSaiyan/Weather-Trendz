@@ -162,8 +162,7 @@ function renderCityButtons() {
 }
 
 //Function to display the users last search on page load
-function renderLastSearch(){
- 
+function renderLastSearch(){ 
     var city =  localStorage.getItem("lastSearch");
 
     if (city === null) {
