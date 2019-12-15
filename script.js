@@ -1,6 +1,7 @@
-//Empty array to store cities entered by the user
+//Empty array to store cities searched by the user
 var cities = [];
 
+//Calling function to render the last searched city by the user
 renderLastSearch();
 
 //Calling this function to initialize retrieiving the cities in local storage
@@ -141,7 +142,7 @@ function retrieveUVIndex(response) {
     });
 }
 
-//Function to create the city buttons
+//Function to render the city buttons
 function renderCityButtons() {
 
     $("#cityBtnGroup-div").empty();
